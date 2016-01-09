@@ -1,5 +1,5 @@
 ﻿interface IHelloDetails {
     roles: any;
-    authmethods: any[];
+    authmethods: string[];
     authid: string;
 }

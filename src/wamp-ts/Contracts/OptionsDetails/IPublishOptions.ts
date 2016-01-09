@@ -1,7 +1,7 @@
 interface IPublishOptions {
     acknowledge: boolean;
     exclude_me: boolean;
-    exclude: any[];
-    eligible: any[];
+    exclude: number[];
+    eligible: number[];
     disclose_me: boolean;
 }
