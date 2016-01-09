@@ -1,97 +1,97 @@
 ﻿class WampProtocol {
     public hello(realm: string, details: IHelloDetails): any[] {
-        return [realm, details];
+        return [WampMessageType.Hello, realm, details];
     }
 
     public welcome(session: number, details: IWelcomeDetails): any[] {
-        return [session, details];
+        return [WampMessageType.Welcome, session, details];
     }
 
     public abort(details: IAbortDetails, reason: string): any[] {
-        return [details, reason];
+        return [WampMessageType.Abort, details, reason];
     }
 
     public challenge(authMethod: string, extra: any): any[] {
-        return [authMethod, extra];
+        return [WampMessageType.Challenge, authMethod, extra];
     }
 
     public authenticate(signature: string, extra: any): any[] {
-        return [signature, extra];
+        return [WampMessageType.Authenticate, signature, extra];
     }
 
     public goodbye(details: IGoodbyeDetails, reason: string): any[] {
-        return [details, reason];
+        return [WampMessageType.Goodbye, details, reason];
     }
 
     public error(type: number, request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): any[] {
-        return [type, request, details, error, argumentsArray, argumentsKw];
+        return [WampMessageType.Error, type, request, details, error, argumentsArray, argumentsKw];
     }
 
     public publish(request: number, options: IPublishOptions, topic: string, argumentsArray?: any[], argumentsKw?: any): any[] {
-        return [request, options, topic, argumentsArray, argumentsKw];
+        return [WampMessageType.Publish, request, options, topic, argumentsArray, argumentsKw];
     }
 
     public published(request: number, publication: number): any[] {
-        return [request, publication];
+        return [WampMessageType.Published, request, publication];
     }
 
     public subscribe(request: number, options: ISubscribeOptions, topic: string): any[] {
-        return [request, options, topic];
+        return [WampMessageType.Subscribe, request, options, topic];
     }
 
     public subscribed(request: number, subscription: number): any[] {
-        return [request, subscription];
+        return [WampMessageType.Subscribed, request, subscription];
     }
 
     public unsubscribe(request: number, subscription: number): any[] {
-        return [request, subscription];
+        return [WampMessageType.Unsubscribe, request, subscription];
     }
 
     public unsubscribed(request: number): any[] {
-        return [request];
+        return [WampMessageType.Unsubscribed, request];
     }
 
     public event(subscription: number, publication: number, details: IEventDetails, argumentsArray?: any[], argumentsKw?: any): any[] {
-        return [subscription, publication, details, argumentsArray, argumentsKw];
+        return [WampMessageType.Event, subscription, publication, details, argumentsArray, argumentsKw];
     }
 
     public call(request: number, options: ICallOptions, procedure: string, argumentsArray?: any[], argumentsKw?: any): any[] {
-        return [request, options, procedure, argumentsArray, argumentsKw];
+        return [WampMessageType.Call, request, options, procedure, argumentsArray, argumentsKw];
     }
 
     public cancel(request: number, options: any): any[] {
-        return [request, options];
+        return [WampMessageType.Cancel, request, options];
     }
 
     public result(request: number, details: IResultDetails, argumentsArray?: any[], argumentsKw?: any): any[] {
-        return [request, details, argumentsArray, argumentsKw];
+        return [WampMessageType.Result, request, details, argumentsArray, argumentsKw];
     }
 
     public register(request: number, options: IRegisterOptions, procedure: string): any[] {
-        return [request, options, procedure];
+        return [WampMessageType.Register, request, options, procedure];
     }
 
     public registered(request: number, registration: number): any[] {
-        return [request, registration];
+        return [WampMessageType.Registered, request, registration];
     }
 
     public unregister(request: number, registration: number): any[] {
-        return [request, registration];
+        return [WampMessageType.Unregister, request, registration];
     }
 
     public unregistered(request: number): any[] {
-        return [request];
+        return [WampMessageType.Unregistered, request];
     }
 
     public invocation(request: number, registration: number, details: IInvocationDetails, argumentsArray?: any[], argumentsKw?: any): any[] {
-        return [request, registration, details, argumentsArray, argumentsKw];
+        return [WampMessageType.Invocation, request, registration, details, argumentsArray, argumentsKw];
     }
 
     public interrupt(request: number, options: any): any[] {
-        return [request, options];
+        return [WampMessageType.Interrupt, request, options];
     }
 
     public yield(request: number, options: IYieldOptions, argumentsArray?: any[], argumentsKw?: any): any[] {
-        return [request, options, argumentsArray, argumentsKw];
+        return [WampMessageType.Yield, request, options, argumentsArray, argumentsKw];
     }
 }
