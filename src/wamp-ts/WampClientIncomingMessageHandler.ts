@@ -1,4 +1,18 @@
-﻿abstract class WampClientIncomingMessageHandler {
+﻿class WampClientIncomingMessageHandler {
+    private _sessionClient: ISessionClient;
+    private _subscriber: ISubscriber;
+    private _publisher: IPublisher;
+    private _callee: ICallee;
+    private _caller: ICaller;
+
+    constructor(sessionClient : ISessionClient ,caller: ICaller, callee: ICallee, publisher: IPublisher, subscriber: ISubscriber) {
+        this._sessionClient = sessionClient;
+        this._subscriber = subscriber;
+        this._publisher = publisher;
+        this._callee = callee;
+        this._caller = caller;
+    }
+
     public handleWampMessage(messageArray: any[]): void {
         var [messageType, messageArguments] = messageArray;
 
@@ -78,19 +92,81 @@
         }
     }
 
+    private handleWelcome(session: number, details: IWelcomeDetails): void {
+        this._sessionClient.welcome(session, details);
+    }
+    private handleAbort(details: IAbortDetails, reason: string): void {
+        this._sessionClient.abort(details, reason);
+    }
+    private handleChallenge(authMethod: string, extra: any): void {
+        this._sessionClient.challenge(authMethod, extra);
+    }
+    private handleGoodbye(details: IGoodbyeDetails, reason: string): void {
+        this._sessionClient.goodbye(details, reason);
+    }
 
-    protected abstract handleWelcome(session: number, details: IWelcomeDetails): void;
-    protected abstract handleAbort(details: IAbortDetails, reason: string): void;
-    protected abstract handleChallenge(authMethod: string, extra: any): void;
-    protected abstract handleGoodbye(details: IGoodbyeDetails, reason: string): void;
-    protected abstract handleError(type: number, request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void;
-    protected abstract handlePublished(request: number, publication: number): void;
-    protected abstract handleSubscribed(request: number, subscription: number): void;
-    protected abstract handleUnsubscribed(request: number): void;
-    protected abstract handleEvent(subscription: number, publication: number, details: IEventDetails, argumentsArray?: any[], argumentsKw?: any): void;
-    protected abstract handleResult(request: number, details: IResultDetails, argumentsArray?: any[], argumentsKw?: any): void;
-    protected abstract handleRegistered(request: number, registration: number): void;
-    protected abstract handleUnregistered(request: number): void;
-    protected abstract handleInvocation(request: number, registration: number, details: IInvocationDetails, argumentsArray?: any[], argumentsKw?: any): void;
-    protected abstract handleInterrupt(request: number, options: any): void;
+    private handleError(type: number, request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {
+        switch (type) {
+        case WampMessageType.Call:
+        {
+            this._caller.callError(request, details, error, argumentsArray, argumentsKw);
+            break;
+        }
+        case WampMessageType.Register:
+        {
+            this._callee.registerError(request, details, error, argumentsArray, argumentsKw);
+            break;
+        }
+        case WampMessageType.Unregister:
+        {
+            this._callee.unregisterError(request, details, error, argumentsArray, argumentsKw);
+            break;
+        }
+        case WampMessageType.Publish:
+        {
+            this._publisher.publishError(request, details, error, argumentsArray, argumentsKw);
+            break;
+        }
+        case WampMessageType.Subscribe:
+        {
+            this._subscriber.subscribeError(request, details, error, argumentsArray, argumentsKw);
+            break;
+        }
+        case WampMessageType.Unsubscribe:
+        {
+            this._subscriber.unsubscribeError(request, details, error, argumentsArray, argumentsKw);
+            break;
+        }
+        default:
+            // TODO: Handle invalid WAMP message type
+        }
+    }
+
+    private handlePublished(request: number, publication: number): void {
+        this._publisher.published(request, publication);
+    }
+    private handleSubscribed(request: number, subscription: number): void {
+        this._subscriber.subscribed(request, subscription);
+    }
+    private handleUnsubscribed(request: number): void {
+        this._subscriber.unsubscribed(request);
+    }
+    private handleEvent(subscription: number, publication: number, details: IEventDetails, argumentsArray?: any[], argumentsKw?: any): void {
+        this._subscriber.event(subscription, publication, details, argumentsArray, argumentsKw);
+    }
+    private handleResult(request: number, details: IResultDetails, argumentsArray?: any[], argumentsKw?: any): void {
+        this._caller.result(request, details, argumentsArray, argumentsKw);
+    }
+    private handleRegistered(request: number, registration: number): void {
+        this._callee.registered(request, registration);
+    }
+    private handleUnregistered(request: number): void {
+        this._callee.unregistered(request);
+    }
+    private handleInvocation(request: number, registration: number, details: IInvocationDetails, argumentsArray?: any[], argumentsKw?: any): void {
+        this._callee.invocation(request, registration, details, argumentsArray, argumentsKw);
+    }
+    private handleInterrupt(request: number, options: any): void {
+        this._callee.interrupt(request, options);
+    }
 }

@@ -1,5 +1,5 @@
 interface IDealer {
-    error(clientProxy: IWampClientProxy, type: number, request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void;
+    invocationError(clientProxy: IWampClientProxy, request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void;
     call(clientProxy: IWampClientProxy, request: number, options: ICallOptions, procedure: string, argumentsArray?: any[], argumentsKw?: any): void;
     cancel(clientProxy: IWampClientProxy, request: number, options: any): void;
     register(clientProxy: IWampClientProxy, request: number, options: IRegisterOptions, procedure: string): void;
