@@ -1,0 +1,3 @@
+interface IYieldOptions {
+    progress: boolean;
+}

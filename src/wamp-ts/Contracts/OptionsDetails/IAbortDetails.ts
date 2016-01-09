@@ -1,0 +1,3 @@
+interface IAbortDetails {
+    message: string;
+}

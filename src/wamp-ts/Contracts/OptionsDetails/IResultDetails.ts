@@ -1,0 +1,3 @@
+interface IResultDetails {
+    progress: boolean;
+}
