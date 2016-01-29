@@ -5,7 +5,7 @@
     private _callee: ICallee;
     private _caller: ICaller;
 
-    constructor(sessionClient : ISessionClient ,caller: ICaller, callee: ICallee, publisher: IPublisher, subscriber: ISubscriber) {
+    constructor(sessionClient: ISessionClient, caller: ICaller, callee: ICallee, publisher: IPublisher, subscriber: ISubscriber) {
         this._sessionClient = sessionClient;
         this._subscriber = subscriber;
         this._publisher = publisher;
@@ -13,8 +13,9 @@
         this._caller = caller;
     }
 
-    public handleWampMessage(message : WampMessage): void {
-        var [messageType, messageArguments] = [message.messageType, message.arguments];
+    public handleWampMessage(message: WampMessage): void {
+        var messageType: WampMessageType = message.messageType;
+        var messageArguments: any[] = message.arguments;
 
         switch (messageType) {
             case WampMessageType.Welcome: {
@@ -107,37 +108,37 @@
 
     private handleError(type: number, request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {
         switch (type) {
-        case WampMessageType.Call:
-        {
-            this._caller.callError(request, details, error, argumentsArray, argumentsKw);
-            break;
-        }
-        case WampMessageType.Register:
-        {
-            this._callee.registerError(request, details, error, argumentsArray, argumentsKw);
-            break;
-        }
-        case WampMessageType.Unregister:
-        {
-            this._callee.unregisterError(request, details, error, argumentsArray, argumentsKw);
-            break;
-        }
-        case WampMessageType.Publish:
-        {
-            this._publisher.publishError(request, details, error, argumentsArray, argumentsKw);
-            break;
-        }
-        case WampMessageType.Subscribe:
-        {
-            this._subscriber.subscribeError(request, details, error, argumentsArray, argumentsKw);
-            break;
-        }
-        case WampMessageType.Unsubscribe:
-        {
-            this._subscriber.unsubscribeError(request, details, error, argumentsArray, argumentsKw);
-            break;
-        }
-        default:
+            case WampMessageType.Call:
+                {
+                    this._caller.callError(request, details, error, argumentsArray, argumentsKw);
+                    break;
+                }
+            case WampMessageType.Register:
+                {
+                    this._callee.registerError(request, details, error, argumentsArray, argumentsKw);
+                    break;
+                }
+            case WampMessageType.Unregister:
+                {
+                    this._callee.unregisterError(request, details, error, argumentsArray, argumentsKw);
+                    break;
+                }
+            case WampMessageType.Publish:
+                {
+                    this._publisher.publishError(request, details, error, argumentsArray, argumentsKw);
+                    break;
+                }
+            case WampMessageType.Subscribe:
+                {
+                    this._subscriber.subscribeError(request, details, error, argumentsArray, argumentsKw);
+                    break;
+                }
+            case WampMessageType.Unsubscribe:
+                {
+                    this._subscriber.unsubscribeError(request, details, error, argumentsArray, argumentsKw);
+                    break;
+                }
+            default:
             // TODO: Handle invalid WAMP message type
         }
     }

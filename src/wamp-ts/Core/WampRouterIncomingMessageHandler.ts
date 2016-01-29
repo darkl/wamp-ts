@@ -12,88 +12,89 @@
     }
 
     public handleWampMessage(clientProxy: IWampClientProxy, message: WampMessage): void {
-        var [messageType, messageArguments] = [message.messageType, message.arguments];
+        var messageType: WampMessageType = message.messageType;
+        var messageArguments: any[] = message.arguments;
 
         switch (messageType) {
-        case WampMessageType.Hello:
-        {
-            let realm: string, details: IHelloDetails;
-            [realm, details] = messageArguments;
-            this.handleHello(clientProxy, realm, details);
-        }
-        case WampMessageType.Abort:
-        {
-            let details: IAbortDetails, reason: string;
-            [details, reason] = messageArguments;
-            this.handleAbort(clientProxy, details, reason);
-        }
-        case WampMessageType.Authenticate:
-        {
-            let signature: string, extra: any;
-            [signature, extra] = messageArguments;
-            this.handleAuthenticate(clientProxy, signature, extra);
-        }
-        case WampMessageType.Goodbye:
-        {
-            let details: IGoodbyeDetails, reason: string;
-            [details, reason] = messageArguments;
-            this.handleGoodbye(clientProxy, details, reason);
-        }
-        case WampMessageType.Error:
-        {
-            let type: number, request: number, details: any, error: string, argumentsArray: any[], argumentsKw: any;
-            [type, request, details, error, argumentsArray, argumentsKw] = messageArguments;
-            this.handleError(clientProxy, type, request, details, error, argumentsArray, argumentsKw);
-        }
-        case WampMessageType.Publish:
-        {
-            let request: number, options: IPublishOptions, topic: string, argumentsArray: any[], argumentsKw: any;
-            [request, options, topic, argumentsArray, argumentsKw] = messageArguments;
-            this.handlePublish(clientProxy, request, options, topic, argumentsArray, argumentsKw);
-        }
-        case WampMessageType.Subscribe:
-        {
-            let request: number, options: ISubscribeOptions, topic: string;
-            [request, options, topic] = messageArguments;
-            this.handleSubscribe(clientProxy, request, options, topic);
-        }
-        case WampMessageType.Unsubscribe:
-        {
-            let request: number, subscription: number;
-            [request, subscription] = messageArguments;
-            this.handleUnsubscribe(clientProxy, request, subscription);
-        }
-        case WampMessageType.Call:
-        {
-            let request: number, options: ICallOptions, procedure: string, argumentsArray: any[], argumentsKw: any;
-            [request, options, procedure, argumentsArray, argumentsKw] = messageArguments;
-            this.handleCall(clientProxy, request, options, procedure, argumentsArray, argumentsKw);
-        }
-        case WampMessageType.Cancel:
-        {
-            let request: number, options: any;
-            [request, options] = messageArguments;
-            this.handleCancel(clientProxy, request, options);
-        }
-        case WampMessageType.Register:
-        {
-            let request: number, options: IRegisterOptions, procedure: string;
-            [request, options, procedure] = messageArguments;
-            this.handleRegister(clientProxy, request, options, procedure);
-        }
-        case WampMessageType.Unregister:
-        {
-            let request: number, registration: number;
-            [request, registration] = messageArguments;
-            this.handleUnregister(clientProxy, request, registration);
-        }
-        case WampMessageType.Yield:
-        {
-            let request: number, options: IYieldOptions, argumentsArray: any[], argumentsKw: any;
-            [request, options, argumentsArray, argumentsKw] = messageArguments;
-            this.handleYield(clientProxy, request, options, argumentsArray, argumentsKw);
-        }
-        default:
+            case WampMessageType.Hello:
+                {
+                    let realm: string, details: IHelloDetails;
+                    [realm, details] = messageArguments;
+                    this.handleHello(clientProxy, realm, details);
+                }
+            case WampMessageType.Abort:
+                {
+                    let details: IAbortDetails, reason: string;
+                    [details, reason] = messageArguments;
+                    this.handleAbort(clientProxy, details, reason);
+                }
+            case WampMessageType.Authenticate:
+                {
+                    let signature: string, extra: any;
+                    [signature, extra] = messageArguments;
+                    this.handleAuthenticate(clientProxy, signature, extra);
+                }
+            case WampMessageType.Goodbye:
+                {
+                    let details: IGoodbyeDetails, reason: string;
+                    [details, reason] = messageArguments;
+                    this.handleGoodbye(clientProxy, details, reason);
+                }
+            case WampMessageType.Error:
+                {
+                    let type: number, request: number, details: any, error: string, argumentsArray: any[], argumentsKw: any;
+                    [type, request, details, error, argumentsArray, argumentsKw] = messageArguments;
+                    this.handleError(clientProxy, type, request, details, error, argumentsArray, argumentsKw);
+                }
+            case WampMessageType.Publish:
+                {
+                    let request: number, options: IPublishOptions, topic: string, argumentsArray: any[], argumentsKw: any;
+                    [request, options, topic, argumentsArray, argumentsKw] = messageArguments;
+                    this.handlePublish(clientProxy, request, options, topic, argumentsArray, argumentsKw);
+                }
+            case WampMessageType.Subscribe:
+                {
+                    let request: number, options: ISubscribeOptions, topic: string;
+                    [request, options, topic] = messageArguments;
+                    this.handleSubscribe(clientProxy, request, options, topic);
+                }
+            case WampMessageType.Unsubscribe:
+                {
+                    let request: number, subscription: number;
+                    [request, subscription] = messageArguments;
+                    this.handleUnsubscribe(clientProxy, request, subscription);
+                }
+            case WampMessageType.Call:
+                {
+                    let request: number, options: ICallOptions, procedure: string, argumentsArray: any[], argumentsKw: any;
+                    [request, options, procedure, argumentsArray, argumentsKw] = messageArguments;
+                    this.handleCall(clientProxy, request, options, procedure, argumentsArray, argumentsKw);
+                }
+            case WampMessageType.Cancel:
+                {
+                    let request: number, options: any;
+                    [request, options] = messageArguments;
+                    this.handleCancel(clientProxy, request, options);
+                }
+            case WampMessageType.Register:
+                {
+                    let request: number, options: IRegisterOptions, procedure: string;
+                    [request, options, procedure] = messageArguments;
+                    this.handleRegister(clientProxy, request, options, procedure);
+                }
+            case WampMessageType.Unregister:
+                {
+                    let request: number, registration: number;
+                    [request, registration] = messageArguments;
+                    this.handleUnregister(clientProxy, request, registration);
+                }
+            case WampMessageType.Yield:
+                {
+                    let request: number, options: IYieldOptions, argumentsArray: any[], argumentsKw: any;
+                    [request, options, argumentsArray, argumentsKw] = messageArguments;
+                    this.handleYield(clientProxy, request, options, argumentsArray, argumentsKw);
+                }
+            default:
             // TODO: Handle invalid WAMP message type
         }
     }
@@ -116,12 +117,12 @@
 
     private handleError(clientProxy: IWampClientProxy, type: number, request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {
         switch (type) {
-        case WampMessageType.Invocation:
-        {
-            this._dealer.invocationError(clientProxy, request, details, error, argumentsArray, argumentsKw);
-            break;
-        }
-        default:
+            case WampMessageType.Invocation:
+                {
+                    this._dealer.invocationError(clientProxy, request, details, error, argumentsArray, argumentsKw);
+                    break;
+                }
+            default:
             // TODO: Handle invalid WAMP message type
         }
     }
