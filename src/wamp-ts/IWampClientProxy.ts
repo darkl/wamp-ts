@@ -1,5 +1,5 @@
 ﻿interface IWampClientProxy extends ISessionClient, ICallee, ICaller, ISubscriber, IPublisher {
-    sendRaw();
+    sendRaw(message : WampMessage);
 
     session : number;
 }
