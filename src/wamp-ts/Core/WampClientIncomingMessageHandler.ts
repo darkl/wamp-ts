@@ -13,8 +13,8 @@
         this._caller = caller;
     }
 
-    public handleWampMessage(messageArray: any[]): void {
-        var [messageType, messageArguments] = messageArray;
+    public handleWampMessage(message : WampMessage): void {
+        var [messageType, messageArguments] = [message.messageType, message.arguments];
 
         switch (messageType) {
             case WampMessageType.Welcome: {

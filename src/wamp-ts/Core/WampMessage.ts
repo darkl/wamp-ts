@@ -2,9 +2,9 @@ class WampMessage {
     private _messageType: WampMessageType;
     private _arguments: any[];
 
-    constructor(messageType : WampMessageType, args : any[]) {
+    constructor(messageType : WampMessageType, messsageArguments : any[]) {
         this._messageType = messageType;
-        this._arguments = args;
+        this._arguments = messsageArguments;
     }
 
     get messageType(): WampMessageType { return this._messageType; }

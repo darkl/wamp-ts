@@ -1,6 +1,26 @@
-﻿class WampRouterProxy extends WampPeerProxy implements IBrokerProxy, IDealerProxy {
+﻿class WampRouterProxy extends WampPeerProxy implements ISessionRouterProxy, IBrokerProxy, IDealerProxy {
     constructor(outgoingMessageHandler: IWampOutgoingMessageHandler) {
         super(outgoingMessageHandler);
+    }
+
+    hello(realm: string, details: IHelloDetails): void {
+        var message: WampMessage = this._protocol.hello(realm, details);
+        this.sendMessage(message);
+    }
+
+    abort(details: IAbortDetails, reason: string): void {
+        var message: WampMessage = this._protocol.abort(details, reason);
+        this.sendMessage(message);
+    }
+
+    authenticate(signature: string, extra: any): void {
+        var message: WampMessage = this._protocol.authenticate(signature, extra);
+        this.sendMessage(message);
+    }
+
+    goodbye(details: IGoodbyeDetails, reason: string): void {
+        var message: WampMessage = this._protocol.goodbye(details, reason);
+        this.sendMessage(message);
     }
 
     publish(request: number, options: IPublishOptions, topic: string, argumentsArray?: any[], argumentsKw?: any): void {

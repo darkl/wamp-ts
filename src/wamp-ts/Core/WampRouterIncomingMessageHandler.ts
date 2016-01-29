@@ -11,8 +11,8 @@
         this._sessionRouter = sessionRouter;
     }
 
-    public handleWampMessage(clientProxy: IWampClientProxy, messageArray: any[]): void {
-        var [messageType, messageArguments] = messageArray;
+    public handleWampMessage(clientProxy: IWampClientProxy, message: WampMessage): void {
+        var [messageType, messageArguments] = [message.messageType, message.arguments];
 
         switch (messageType) {
         case WampMessageType.Hello:
