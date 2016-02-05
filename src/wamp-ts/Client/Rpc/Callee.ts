@@ -7,13 +7,13 @@ class Callee implements ICallee {
 
     registered(request: number, registration: number): void {}
 
-    registerError(request: number, details, error: string, argumentsArray?: any[], argumentsKw?): void {}
+    registerError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {}
 
     unregistered(request: number): void {}
 
-    unregisterError(request: number, details, error: string, argumentsArray?: any[], argumentsKw?): void {}
+    unregisterError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {}
 
-    invocation(request: number, registration: number, details: IInvocationDetails, argumentsArray?: any[], argumentsKw?): void {}
+    invocation(request: number, registration: number, details: IInvocationDetails, argumentsArray?: any[], argumentsKw?: any): void {}
 
-    interrupt(request: number, options): void {}
+    interrupt(request: number, options: any): void {}
 }

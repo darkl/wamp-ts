@@ -5,7 +5,7 @@ class Caller implements ICaller {
         this._dealer = dealer;
     }
 
-    callError(request: number, details, error: string, argumentsArray?: any[], argumentsKw?): void {}
+    callError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void { }
 
-    result(request: number, details: IResultDetails, argumentsArray?: any[], argumentsKw?): void {}
+    result(request: number, details: IResultDetails, argumentsArray?: any[], argumentsKw?: any): void { }
 }

@@ -1,17 +1,17 @@
-class Subscriber implements ISubscriber  {
+class Subscriber implements ISubscriber {
     private _broker: IBrokerProxy;
 
-    constructor(broker : IBrokerProxy) {
+    constructor(broker: IBrokerProxy) {
         this._broker = broker;
     }
 
-    subscribed(request: number, subscription: number): void { }
+    subscribed(request: number, subscription: number): void {}
 
-    subscribeError(request: number, details, error: string, argumentsArray?: any[], argumentsKw?): void {}
+    subscribeError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {}
 
     unsubscribed(request: number): void {}
 
-    unsubscribeError(request: number, details, error: string, argumentsArray?: any[], argumentsKw?): void {}
+    unsubscribeError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {}
 
-    event(subscription: number, publication: number, details: IEventDetails, argumentsArray?: any[], argumentsKw?): void {}
+    event(subscription: number, publication: number, details: IEventDetails, argumentsArray?: any[], argumentsKw?: any): void {}
 }

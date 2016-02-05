@@ -9,7 +9,7 @@ class SessionClient implements ISessionClient {
 
     abort(details: IAbortDetails, reason: string): void {}
 
-    challenge(authMethod: string, extra): void {}
+    challenge(authMethod: string, extra: any): void {}
 
     goodbye(details: IGoodbyeDetails, reason: string): void {}
 }

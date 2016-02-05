@@ -6,7 +6,7 @@ class JsonSerializer implements IWampMessageParser {
         return json;
     }
 
-    parse(data): WampMessage {
+    parse(data : any): WampMessage {
         var array: any[] = JSON.parse(data);
         var messageType: WampMessageType, messageArguments: any[];
         [messageType, ...messageArguments] = array;

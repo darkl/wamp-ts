@@ -7,5 +7,5 @@ class Publisher implements IPublisher {
 
     published(request: number, publication: number): void { }
 
-    publishError(request: number, details, error: string, argumentsArray?: any[], argumentsKw?): void {}
+    publishError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {}
 }
