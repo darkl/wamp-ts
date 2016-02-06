@@ -5,7 +5,8 @@ import {WampClientIncomingMessageHandler} from "./Core/WampClientIncomingMessage
 import {WampRouterIncomingMessageHandler} from "./Core/WampRouterIncomingMessageHandler";
 import {WampOutgoingMessageHandler} from "./Core/WampOutgoingMessageHandler";
 import {IWampOutgoingMessageHandler} from "./Core/IWampOutgoingMessageHandler";
+import {TaskCompletionSource} from "./Core/TaskCompletionSource";
 
 export * from "./Core/Contracts";
 export * from "./Core/Interfaces";
-export {WampMessage, WampClientProxy, WampRouterProxy, WampClientIncomingMessageHandler, WampRouterIncomingMessageHandler, WampOutgoingMessageHandler, IWampOutgoingMessageHandler};
+export {TaskCompletionSource, WampMessage, WampClientProxy, WampRouterProxy, WampClientIncomingMessageHandler, WampRouterIncomingMessageHandler, WampOutgoingMessageHandler, IWampOutgoingMessageHandler};

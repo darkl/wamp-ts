@@ -1,5 +1,4 @@
 ﻿import * as Core from "../Core";
-
 import {SessionClient} from "./Session/SessionClient";
 import {Callee} from "./Rpc/Callee";
 import {Caller} from "./Rpc/Caller";
@@ -37,5 +36,13 @@ export class WampChannel {
                 this._callee,
                 this._publisher,
                 this._subscriber);
+
+        this._connection.onmessage = (message: Core.WampMessage) => {
+            this._incomingMessageHandler.handleWampMessage(message);
+        };
+    }
+
+    open(): Promise<void> {
+        return this._session.open();
     }
 }
