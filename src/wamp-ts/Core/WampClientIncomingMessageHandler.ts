@@ -1,4 +1,7 @@
-﻿class WampClientIncomingMessageHandler {
+﻿import {WampMessage} from "./WampMessage";
+import {WampMessageType, IHelloDetails, IAbortDetails, IEventDetails, IGoodbyeDetails, IInvocationDetails, IResultDetails, IWelcomeDetails, IYieldOptions, ICallOptions, IPublishOptions, IRegisterOptions, ISubscribeOptions, ISessionClient,ISubscriber,IPublisher, ICallee, ICaller} from "./Contracts";
+
+export class WampClientIncomingMessageHandler {
     private _sessionClient: ISessionClient;
     private _subscriber: ISubscriber;
     private _publisher: IPublisher;

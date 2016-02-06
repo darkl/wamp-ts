@@ -1,4 +1,9 @@
-﻿class WampRouterProxy extends WampPeerProxy implements ISessionRouterProxy, IBrokerProxy, IDealerProxy {
+﻿import {WampMessage} from "./WampMessage";
+import {WampPeerProxy} from "./WampPeerProxy";
+import {WampMessageType, IHelloDetails, IAbortDetails, IEventDetails, IGoodbyeDetails, IInvocationDetails, IResultDetails, IWelcomeDetails, IYieldOptions, ICallOptions, IPublishOptions, IRegisterOptions, ISubscribeOptions,ISessionRouterProxy,IDealerProxy,IBrokerProxy} from "./Contracts";
+import {IWampOutgoingMessageHandler} from "./IWampOutgoingMessageHandler";
+
+export class WampRouterProxy extends WampPeerProxy implements ISessionRouterProxy, IBrokerProxy, IDealerProxy {
     constructor(outgoingMessageHandler: IWampOutgoingMessageHandler) {
         super(outgoingMessageHandler);
     }

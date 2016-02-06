@@ -1,7 +1,9 @@
-class Callee implements ICallee {
-    private _dealer: IDealerProxy;
+import * as Core from "../../Core";
 
-    constructor(dealer : IDealerProxy) {
+export class Callee implements Core.ICallee {
+    private _dealer: Core.IDealerProxy;
+
+    constructor(dealer: Core.IDealerProxy) {
         this._dealer = dealer;
     }
 
@@ -13,7 +15,7 @@ class Callee implements ICallee {
 
     unregisterError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {}
 
-    invocation(request: number, registration: number, details: IInvocationDetails, argumentsArray?: any[], argumentsKw?: any): void {}
+    invocation(request: number, registration: number, details: Core.IInvocationDetails, argumentsArray?: any[], argumentsKw?: any): void {}
 
     interrupt(request: number, options: any): void {}
 }

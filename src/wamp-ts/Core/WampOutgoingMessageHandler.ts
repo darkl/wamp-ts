@@ -1,4 +1,8 @@
-﻿class WampOutgoingMessageHandler implements IWampOutgoingMessageHandler {
+﻿import {IWampOutgoingMessageHandler} from "./IWampOutgoingMessageHandler";
+import {IWampMessageParser, IWampConnection} from "./Interfaces";
+import {WampMessage} from "./WampMessage";
+
+export class WampOutgoingMessageHandler implements IWampOutgoingMessageHandler {
     private _parser: IWampMessageParser;
     private _connection: IWampConnection;
 

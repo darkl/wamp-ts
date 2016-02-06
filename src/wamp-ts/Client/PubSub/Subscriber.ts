@@ -1,7 +1,9 @@
-class Subscriber implements ISubscriber {
-    private _broker: IBrokerProxy;
+import * as Core from "../../Core";
 
-    constructor(broker: IBrokerProxy) {
+export class Subscriber implements Core.ISubscriber {
+    private _broker: Core.IBrokerProxy;
+
+    constructor(broker: Core.IBrokerProxy) {
         this._broker = broker;
     }
 
@@ -13,5 +15,5 @@ class Subscriber implements ISubscriber {
 
     unsubscribeError(request: number, details: any, error: string, argumentsArray?: any[], argumentsKw?: any): void {}
 
-    event(subscription: number, publication: number, details: IEventDetails, argumentsArray?: any[], argumentsKw?: any): void {}
+    event(subscription: number, publication: number, details: Core.IEventDetails, argumentsArray?: any[], argumentsKw?: any): void {}
 }

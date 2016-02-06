@@ -1,4 +1,10 @@
-﻿class WampClientProxy extends WampPeerProxy implements IWampClientProxy {
+﻿import {IWampClientProxy} from "./IWampClientProxy";
+import {WampMessage} from "./WampMessage";
+import {WampPeerProxy} from "./WampPeerProxy";
+import {IWampOutgoingMessageHandler} from "./IWampOutgoingMessageHandler";
+import {WampMessageType, IHelloDetails, IAbortDetails, IEventDetails, IGoodbyeDetails, IInvocationDetails, IResultDetails, IWelcomeDetails} from "./Contracts";
+
+export class WampClientProxy extends WampPeerProxy implements IWampClientProxy {
     constructor(outgoingMessageHandler: IWampOutgoingMessageHandler) {
         super(outgoingMessageHandler);
     }

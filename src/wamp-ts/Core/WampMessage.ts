@@ -1,4 +1,6 @@
-class WampMessage {
+import {WampMessageType} from "./Contracts";
+
+export class WampMessage {
     private _messageType: WampMessageType;
     private _arguments: any[];
 

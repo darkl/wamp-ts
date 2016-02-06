@@ -1,7 +1,9 @@
-class Publisher implements IPublisher {
-    private _broker: IBrokerProxy;
+import * as Core from "../../Core";
 
-    constructor(broker: IBrokerProxy) {
+export class Publisher implements Core.IPublisher {
+    private _broker: Core.IBrokerProxy;
+
+    constructor(broker: Core.IBrokerProxy) {
         this._broker = broker;
     }
 

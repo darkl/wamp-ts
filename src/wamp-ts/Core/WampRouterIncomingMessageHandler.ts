@@ -1,4 +1,8 @@
-﻿class WampRouterIncomingMessageHandler {
+﻿import {WampMessageType, IHelloDetails, IAbortDetails, IEventDetails, IGoodbyeDetails, IInvocationDetails, IResultDetails, IWelcomeDetails, IYieldOptions, ICallOptions, IPublishOptions, IRegisterOptions, ISubscribeOptions,ISessionRouter,IDealer,IBroker} from "./Contracts";
+import {WampMessage} from "./WampMessage";
+import {IWampClientProxy} from "./IWampClientProxy";
+
+export class WampRouterIncomingMessageHandler {
     private _dealer: IDealer;
     private _broker: IBroker;
     private _sessionRouter: ISessionRouter;

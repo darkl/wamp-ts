@@ -1,4 +1,7 @@
-﻿class WampProtocol {
+﻿import {WampMessageType, IHelloDetails, IAbortDetails, IEventDetails, IGoodbyeDetails, IInvocationDetails, IResultDetails, IWelcomeDetails, IYieldOptions, ICallOptions, IPublishOptions, IRegisterOptions, ISubscribeOptions} from "./Contracts";
+import {WampMessage} from "./WampMessage";
+
+export class WampProtocol {
     public hello(realm: string, details: IHelloDetails): WampMessage {
         return new WampMessage(WampMessageType.Hello, [realm, details]);
     }

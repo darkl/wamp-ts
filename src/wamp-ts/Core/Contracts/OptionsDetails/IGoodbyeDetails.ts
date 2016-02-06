@@ -1,3 +1,0 @@
-interface IGoodbyeDetails {
-    message: string;
-}

@@ -1,3 +1,0 @@
-interface ISubscribeOptions {
-    match: string;
-}

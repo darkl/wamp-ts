@@ -1,4 +1,8 @@
-class WampPeerProxy {
+import {WampMessage} from "./WampMessage";
+import {WampProtocol} from "./WampProtocol";
+import {IWampOutgoingMessageHandler} from "./IWampOutgoingMessageHandler";
+
+export class WampPeerProxy {
     private _outgoingMessageHandler: IWampOutgoingMessageHandler;
     protected _protocol: WampProtocol;
 

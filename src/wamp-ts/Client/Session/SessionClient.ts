@@ -1,23 +1,25 @@
-class SessionClient implements ISessionClient {
-    private _realm;
-    private _connection: IWampConnection;
-    private _sessionRouter: ISessionRouterProxy;
+import * as Core from "../../Core";
 
-    constructor(realm : string, sessionRouter : ISessionRouterProxy, connection: IControlledWampConnection) {
+export class SessionClient implements Core.ISessionClient {
+    private _realm : string;
+    private _connection: Core.IWampConnection;
+    private _sessionRouter: Core.ISessionRouterProxy;
+
+    constructor(realm: string, sessionRouter: Core.ISessionRouterProxy, connection: Core.IControlledWampConnection) {
         this._realm = realm;
         this._connection = connection;
         this._sessionRouter = sessionRouter;
     }
 
     connect(): void {
-        this._sessionRouter.hello(this._realm, <IHelloDetails>{});
+        this._sessionRouter.hello(this._realm, <Core.IHelloDetails>{});
     }
 
-    welcome(session: number, details: IWelcomeDetails): void {}
+    welcome(session: number, details: Core.IWelcomeDetails): void {}
 
-    abort(details: IAbortDetails, reason: string): void {}
+    abort(details: Core.IAbortDetails, reason: string): void {}
 
     challenge(authMethod: string, extra: any): void {}
 
-    goodbye(details: IGoodbyeDetails, reason: string): void {}
+    goodbye(details: Core.IGoodbyeDetails, reason: string): void {}
 }
