@@ -1,4 +1,6 @@
-﻿import * as Core from "../Core"
+﻿/// <reference path="../Scripts/typings/ws/ws.d.ts"/>
+
+import * as Core from "../Core"
 import * as WebSocket from "ws";
 
 export class WsConnection implements Core.IControlledWampConnection {

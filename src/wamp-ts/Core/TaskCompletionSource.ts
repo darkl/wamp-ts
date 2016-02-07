@@ -1,3 +1,5 @@
+/// <reference path="../Scripts/typings/es6-promise/es6-promise.d.ts"/>
+
 export class TaskCompletionSource<T> {
     private _promise: Promise<T>;
     private _resolve: (result: T) => void;
